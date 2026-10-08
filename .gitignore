@@ -1,0 +1,23 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+runs/
+data/generated/
+models/
+*.pt
+*.safetensors
+.DS_Store
+# Unpublished research notes and source material stay local.
+/Reference/
+/project_idea.md
+/first_round_experiment_plan.md
