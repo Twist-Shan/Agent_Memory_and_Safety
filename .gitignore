@@ -21,3 +21,9 @@ models/
 /Reference/
 /project_idea.md
 /first_round_experiment_plan.md
+
+# Machine-local project instructions and derived analysis artifacts.
+/AGENTS.md
+*.npz
+*.npy
+*.log

@@ -37,10 +37,31 @@ result demonstrates why zero executed violations does not establish successful
 agent behavior. Raw outputs remain in ignored local `runs/`; they are reproducible
 using the README commands. Dates are record metadata, not random seeds.
 
-## Not yet validated
+## Scope of the original validation record
 
-No pretrained Qwen3-8B rollout, A10 memory peak, learned safety-state phenomenon,
-or real-model causal improvement has been measured. Native function calling,
+The original software-validation run did not measure pretrained Qwen3-8B
+behavior, A10 peak memory, learned safety representations or causal improvement.
+Separate research runs and their results are outside this public validation record. Native function calling,
 report-audit experiments, low-FPR calibration and group-bootstrap confidence
 intervals remain follow-up work. CI runs core tests; the optional integrations
 above were run locally with installed research dependencies.
+
+
+## Toy A repository update
+
+The public task name is **Toy A — Check Before Publish**. Existing case IDs,
+environment transitions and archived experiment files are unchanged.
+
+The decision-site and controller modules are extracted from the local experiment
+adapters, with formatting and argument checks for public use. Software checks cover
+exact donor assignment and full-logit identity in a synthetic decoder,
+self-replacement identity, one-forward/one-position locality, retained prefix
+mismatches, cleanup after controller exceptions, activation-only gating and random
+perturbation norms after BF16 rounding. These synthetic checks do not establish a
+learned authorization mechanism or safety improvement.
+
+Validated on 2026-10-10 with the environment listed above: **19/19 tests passed**
+with `AMS_TEST_WHITEBOX=1`, including the two new adapter/controller tests and
+both existing offline integrations. No pretrained weights were downloaded and no
+GPU experiment was launched. The environment emitted optional pandas accelerator
+version warnings for numexpr/bottleneck; they did not fail these checks.

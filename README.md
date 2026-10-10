@@ -1,13 +1,20 @@
 # Agent Memory and Safety
 
-Research code for **Check Before Publish**: how agents reconstruct version-bound
-authorization and historical violations from execution histories, and whether
-those representations influence actions. The first task is deliberately small:
-two files, four tools, deterministic labels, and complete observable histories.
+A collection of controlled tasks for studying agent execution-state representations
+and safety. **Toy A — Check Before Publish** is the first task: two files, four
+tools, version-bound authorization, and complete observable histories.
 
-This repository implements an experimental harness, **not evidence of an LLM
-safety result**. Scripted baselines and random-weight integration tests are software
-validation. Real Qwen3 experiments require a separate white-box run.
+| Task | Implementation | Scope |
+| --- | --- | --- |
+| Toy A — Check Before Publish | `environment.py`, `data.py`, `prompts.py` | Object- and version-specific check-before-publish rules |
+
+The existing CLI currently operates on Toy A. Historical module names, case IDs
+and saved data schemas are unchanged. Future tasks should have separate task
+contracts and validation, rather than silently changing Toy A semantics.
+
+This public repository contains reusable code and software validation. Research
+reports and model-run artifacts are maintained separately; the checks documented
+here do not establish a pretrained model's safety performance.
 
 ## Quick start — no model, GPU or API key required
 
@@ -15,18 +22,18 @@ Python 3.10 or later, from this directory:
 
 ```sh
 python -m unittest discover -s tests -v
-python -m agent_memory_safety generate --bases 100 --seed 17 --output data/generated/checkpoints.jsonl
-python -m agent_memory_safety pilot --policy oracle --bases 100 --seed 17 --output runs/oracle
+python -m agent_memory_safety generate --bases 100 --seed 123 --output data/generated/checkpoints.jsonl
+python -m agent_memory_safety pilot --policy oracle --bases 100 --seed 123 --output runs/oracle
 python -m agent_memory_safety verify runs/oracle
-python -m agent_memory_safety pilot --policy shortcut --bases 100 --seed 17 --output runs/shortcut
-python -m agent_memory_safety pilot --policy shortcut --guard --bases 100 --seed 17 --output runs/guard
+python -m agent_memory_safety pilot --policy shortcut --bases 100 --seed 123 --output runs/shortcut
+python -m agent_memory_safety pilot --policy shortcut --guard --bases 100 --seed 123 --output runs/guard
 ```
 
 Output paths must be new; commands refuse accidental overwrites. Alternatively,
 `python -m pip install -e .` installs the `ams` CLI. The core uses only the standard
 library. Generated datasets, activations and runs are ignored by Git.
 
-## Task contract
+## Toy A task contract
 
 `read(file)` returns content and version; `edit(file, content)` changes an integer
 in [0,100]; `check(file)` yields PASS or ERROR; `publish(file)` publishes the current
@@ -49,7 +56,7 @@ target content, independently of safety. The trusted log includes labels, while
 the agent receives only actions and public tool observations. `replay.py` implements
 the state transition logic independently and rejects inconsistent outcomes or labels.
 
-## Experiment protocols
+## Toy A dataset and runner
 
 `generate` creates eight controlled checkpoints per base: valid, expired,
 wrong-object, error, pass-then-error, irrelevant-edit, clean-history and
@@ -79,7 +86,7 @@ build appropriate for your CUDA installation first.
 
 ```sh
 python -m pip install -e ".[whitebox,analysis]"
-python -m agent_memory_safety pilot --policy hf --model Qwen/Qwen3-8B --revision CHECKPOINT_COMMIT_SHA --capture --bases 100 --seed 17 --output runs/qwen-pilot
+python -m agent_memory_safety pilot --policy hf --model Qwen/Qwen3-8B --revision CHECKPOINT_COMMIT_SHA --capture --bases 100 --seed 123 --output runs/qwen-pilot
 python -m agent_memory_safety collect --data data/generated/checkpoints.jsonl --model Qwen/Qwen3-8B --revision CHECKPOINT_COMMIT_SHA --output runs/qwen-states
 python -m agent_memory_safety probe --manifest runs/qwen-states/manifest.jsonl --label authorized_target --output runs/probe-current
 python -m agent_memory_safety probe --manifest runs/qwen-states/manifest.jsonl --label ever_violated --output runs/probe-history
@@ -109,10 +116,10 @@ a causal safety feature. Per-condition accuracy and independent base counts are
 included. Confidence intervals, low-FPR calibration, cross-cause transfer and
 separate structured report audits are **not yet implemented**.
 
-### Local causal intervention
+### Legacy prompt-position intervention
 
 ```sh
-python -m agent_memory_safety intervene --data data/generated/checkpoints.jsonl --case-id s17-base-00000-expired --vector runs/probe-current/direction.npy --layer 12 --mode add --scale 1 --model Qwen/Qwen3-8B --revision CHECKPOINT_COMMIT_SHA --output runs/patch-pilot
+python -m agent_memory_safety intervene --data data/generated/checkpoints.jsonl --case-id s123-base-00000-expired --vector runs/probe-current/direction.npy --layer 12 --mode add --scale 1 --model Qwen/Qwen3-8B --revision CHECKPOINT_COMMIT_SHA --output runs/patch-pilot
 ```
 
 Use the layer selected in `report.json`, not the illustrative layer 12. Compare
@@ -124,6 +131,18 @@ actions are unmodified. Both baseline and intervention continue to finish/budget
 Historical violations in an assigned prefix are recorded separately from new
 continuation violations. This entry point is a local pilot, not a complete
 multi-seed causal study or sustained steering intervention.
+
+### Single-forward decision-site intervention
+
+`agent_memory_safety.decision_site` provides exact residual assignment at the
+first naturally generated action-name token. A prefix mismatch is recorded as
+`located=False`, never repaired or silently removed. Later forwards and subsequent
+actions remain unmodified. `agent_memory_safety.controllers` provides an
+activation-only gate and BF16 norm-matched random perturbations.
+
+These Python APIs are separate from the legacy `intervene` CLI above. See
+[the implementation guide](docs/decision_site.md) for usage, capture semantics,
+precision checks and limitations. No experiment batch is started by importing them.
 
 ## Verification and reproducibility
 
@@ -139,7 +158,8 @@ python -m unittest discover -s tests -v
 ```
 
 On Linux/macOS use `AMS_TEST_WHITEBOX=1 python -m unittest discover -s tests -v`.
-Seeds default to 17; use independent predeclared seeds such as 43 and 101, never
+Legacy API defaults remain 17 for compatibility. New runs should explicitly pass
+`--seed 123`; use predeclared random-control seeds 123, 124 and 125, never
 date-derived seeds. Repeated seeds alone do not establish statistical independence.
 
 ## Documentation
