@@ -18,6 +18,28 @@ def trace(case, actions):
 
 
 class AgenticTests(unittest.TestCase):
+    def test_filesystem_prompt_variants_and_replay(self):
+        from agent_memory_safety.agentic.prompt_variants import MEMORY_CLAIM
+        for game in ('hanoi', 'fifteen'):
+            original = env.build_case(game, disks=6)
+            revised = env.build_case(game, disks=6, fs_prompt_variant='no-memory-claims')
+            self.assertIn(MEMORY_CLAIM, original['initial_observation'])
+            self.assertEqual(revised['initial_observation'],
+                             original['initial_observation'].replace(MEMORY_CLAIM, ''))
+            self.assertEqual(original['initial_fs'], revised['initial_fs'])
+            self.assertEqual(original['initial_board_state'], revised['initial_board_state'])
+            for case in (original, revised):
+                home = case['initial_fs']['home']['user']
+                self.assertNotIn('scratchpad.md', home)
+                self.assertNotIn('past_games', home)
+                route = (env.legal_hanoi_route(6) if game == 'hanoi'
+                         else env.legal_fifteen_witness(case['game_seed'])[1])
+                record = trace(case, ['[fs_write scratchpad.md notes]',
+                                      '[fs_cat scratchpad.md]'] + route)
+                self.assertTrue(replay_actions(record)['win_without_illegal'])
+            with self.assertRaises(ValueError):
+                env.build_case(game, fs_prompt_variant='unknown')
+
     @classmethod
     def setUpClass(cls):
         verify_sources()

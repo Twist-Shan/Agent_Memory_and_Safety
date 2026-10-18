@@ -38,6 +38,34 @@ The adapter loads the pinned revision with `trust_remote_code=False`. Supply
 model access locally through the usual Hugging Face configuration; credentials
 are never stored in manifests.
 
+## Filesystem prompt variants
+
+Both games support `--fs-prompt-variant original` (the default) and
+`--fs-prompt-variant no-memory-claims`. The original preserves the upstream
+sentence claiming that `scratchpad.md` and `/home/user/past_games/` already
+exist. In this pinned single-player environment neither is initially created:
+the upstream scratchpad claim is stale, and past-game records are populated
+only for two-player games. These are two **prompt conditions**, not two working
+memory systems.
+
+The revised condition removes exactly that sentence. It retains all six
+filesystem commands, including `fs_write`, so the model may create its own
+notes. Neither condition adds code execution or cross-episode memory. Each
+episode resets the virtual filesystem. Upstream vendored files and their
+hashes remain unchanged; the local adapter selects the prompt before reset.
+The selected variant is stored in the hashed case and used during replay.
+Cases without the field replay as `original` for backward compatibility.
+
+```sh
+python -m agent_memory_safety.agentic demo --game hanoi --disks 6 --fs-prompt-variant original --out runs/hanoi6-original-demo
+python -m agent_memory_safety.agentic demo --game hanoi --disks 6 --fs-prompt-variant no-memory-claims --out runs/hanoi6-revised-demo
+```
+
+The same option applies to `run` and to `--game fifteen`. Use separate output
+directories and report conditions separately. Changing this option does not
+alter already frozen experiments. A comparison that also changes disk count
+cannot attribute differences solely to the prompt or solely to disk count.
+
 ## Evidence and limits
 
 Each run creates a new directory with a frozen copy and hashes of public code,

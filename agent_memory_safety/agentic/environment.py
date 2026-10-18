@@ -115,15 +115,16 @@ def load_originals(root=ROOT):
     return _LOADED
 
 
-def _new_env(game, env_id=None):
+def _new_env(game, env_id=None, fs_prompt_variant="original"):
+    from .prompt_variants import configure_fs_prompt
     classes, ObservationWrapper, ActionWrapper, FilesystemWrapper, _ = load_originals()
     if game not in GAMES:
         raise ValueError("Unknown game")
     env = classes[game](**configuration(game, env_id)["parameters"])
     env = ObservationWrapper(env)
     env = ActionWrapper(env)
-    return FilesystemWrapper(env, hidden_solution=False, logical_bug=True,
-                             read_opponent_prompt=False, write_opponent_prompt=False)
+    return configure_fs_prompt(FilesystemWrapper(env, hidden_solution=False, logical_bug=True,
+                             read_opponent_prompt=False, write_opponent_prompt=False), fs_prompt_variant)
 
 
 def _json_state(value):
@@ -152,7 +153,7 @@ def _snapshot(env, game):
                 "wrapper_flag": bool(env.logical_bug_triggered)}}
 
 
-def build_case(game, game_seed=224899942, *, disks=7, case_id="case_000"):
+def build_case(game, game_seed=224899942, *, disks=7, case_id="case_000", fs_prompt_variant="original"):
     """Freeze one original task; private case metadata never enters the prompt."""
     if game not in GAMES or not isinstance(game_seed,int) or isinstance(game_seed,bool):
         raise ValueError("Expected hanoi/fifteen and an integer environment seed")
@@ -162,7 +163,7 @@ def build_case(game, game_seed=224899942, *, disks=7, case_id="case_000"):
               if game=="hanoi" else "FifteenPuzzle-v0")
     seed = 123
     cfg = configuration(game, env_id)
-    env = _new_env(game, env_id)
+    env = _new_env(game, env_id, fs_prompt_variant)
     env.reset(num_players=1, seed=game_seed)
     inner = env._get_inner_env()
     effective = {key: getattr(inner, key) for key in cfg["effective_parameters"]}
@@ -187,6 +188,7 @@ def build_case(game, game_seed=224899942, *, disks=7, case_id="case_000"):
         "source_path": source_path, "source_payload_sha256": text_hash(env.fs.cat(source_path)),
         "source_metadata_model_visible": False,
     }
+    case["fs_prompt_variant"] = fs_prompt_variant
     case["case_sha256"] = digest(case)
     return case
 
@@ -288,7 +290,7 @@ class LogicBridge:
     def reset(self):
         if self.env is not None:
             raise RuntimeError("Resetting an active/finalized case is forbidden")
-        env = _new_env(self.game, self.case["env_id"])
+        env = _new_env(self.game, self.case["env_id"], self.case.get("fs_prompt_variant", "original"))
         env.reset(num_players=1, seed=self.case["game_seed"])
         inner = env._get_inner_env()
         if {k: getattr(inner, k) for k in self.case["effective_parameters"]} != self.case["effective_parameters"]:

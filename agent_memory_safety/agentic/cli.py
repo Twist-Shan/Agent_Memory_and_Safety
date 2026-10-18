@@ -71,7 +71,7 @@ def replay_actions(record, source_root=ROOT):
 
 def demo(args):
     verify_sources()
-    case = build_case(args.game,args.env_seed,disks=args.disks)
+    case = build_case(args.game,args.env_seed,disks=args.disks,fs_prompt_variant=args.fs_prompt_variant)
     route = (legal_hanoi_route(args.disks) if args.game=='hanoi'
              else legal_fifteen_witness(args.env_seed)[1])
     bridge = LogicBridge(case)
@@ -93,7 +93,7 @@ def demo(args):
 def run_model(args):
     from .muse import MuseAdapter
     verify_sources()
-    case=build_case(args.game,args.env_seed,disks=args.disks)
+    case=build_case(args.game,args.env_seed,disks=args.disks,fs_prompt_variant=args.fs_prompt_variant)
     args.out.mkdir(parents=True,exist_ok=False)
     manifest=dict(schema='agentic_muse_run_v1',created_utc=utc(),case=case,
                   settings=copy.deepcopy(SETTINGS),max_responses=MAX_RESPONSES,
@@ -135,6 +135,8 @@ def main():
         sub.add_argument('--game',choices=['fifteen','hanoi'],required=True)
         sub.add_argument('--disks',type=int,choices=[5,6,7],default=7)
         sub.add_argument('--env-seed',type=int,default=224899942)
+        sub.add_argument('--fs-prompt-variant', choices=['original','no-memory-claims'], default='original',
+                         help='Original upstream prompt or remove nonexistent memory-resource claims')
         sub.add_argument('--out',type=Path,required=True)
         sub.set_defaults(func=func)
     sub=commands.add_parser('audit')

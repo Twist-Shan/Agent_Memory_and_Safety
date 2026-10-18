@@ -543,7 +543,8 @@ def original_environment(case, bundle):
     env = action.ActionFormattingWrapper(env)
     env = wrapper.FilesystemWrapper(env, hidden_solution=False, logical_bug=True,
                                    read_opponent_prompt=False, write_opponent_prompt=False)
-    return env
+    from .prompt_variants import configure_fs_prompt
+    return configure_fs_prompt(env, case.get("fs_prompt_variant", "original"))
 
 
 def check_loaded_sources(bundle):
