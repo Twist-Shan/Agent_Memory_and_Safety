@@ -3,6 +3,9 @@ import itertools
 import json
 import tempfile
 import unittest
+import os
+import uuid
+from contextlib import contextmanager
 from pathlib import Path
 
 from agent_memory_safety.task import Action, Task
@@ -12,6 +15,19 @@ from agent_memory_safety.data import CONDITIONS, generate_cases, restore_case
 from agent_memory_safety.runner import ScriptPolicy, run_episode, summarize
 from agent_memory_safety.prompts import messages_for
 from agent_memory_safety.cli import main
+
+
+@contextmanager
+def cli_fixture(root):
+    if os.name != 'nt':
+        with tempfile.TemporaryDirectory(dir=root) as path:
+            yield Path(path)
+        return
+    # Some managed Windows runners cannot reopen tempfile's private-ACL folder.
+    # Inherit workspace permissions and retain this small ignored test artifact.
+    path = root / ('core_test_' + uuid.uuid4().hex)
+    path.mkdir()
+    yield path
 
 
 class EnvironmentTests(unittest.TestCase):
@@ -150,7 +166,7 @@ class RunnerTests(unittest.TestCase):
     def test_cli_end_to_end(self):
         test_root = Path(__file__).resolve().parents[1] / "runs"
         test_root.mkdir(exist_ok=True)
-        with tempfile.TemporaryDirectory(dir=test_root) as tmp:
+        with cli_fixture(test_root) as tmp:
             out = Path(tmp) / "run"
             main(["pilot", "--bases", "3", "--output", str(out)])
             main(["verify", str(out)])

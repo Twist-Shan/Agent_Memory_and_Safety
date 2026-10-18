@@ -1,0 +1,82 @@
+{
+  "hvta_commit": "318dc5644e4bd97796e6adf577909260fbfe5e6e",
+  "textarena_commit": "a2c896c5c84c8557d78d3d9182a066ff573daf44",
+  "files": {
+    "sources/hvta/LICENSE": {
+      "sha256": "c61b15a44991f1ea1d310d5b00d54b39a138d290934d167ca2fb7c860a452a3e",
+      "bytes": 1066
+    },
+    "sources/textarena/LICENSE": {
+      "sha256": "4d290098b6f85c5b5febd67960acfec8e3e3c819bde6b20cfdc09ddfd0fca01f",
+      "bytes": 1070
+    },
+    "sources/hvta/hvta/__init__.py": {
+      "sha256": "5c329cf3c1de70f87f143137d5a3f1e17b86fbf7d3d7a6720f24181f28cf3a43",
+      "bytes": 86
+    },
+    "sources/hvta/hvta/FilesystemWrapper/__init__.py": {
+      "sha256": "ca01697e1e708ea3e5e859f9c6cfc5988a7ce9ab6491b4b93e73a11e7ac4bf4d",
+      "bytes": 83
+    },
+    "sources/hvta/hvta/FilesystemWrapper/filesystem_wrapper.py": {
+      "sha256": "f929de3525546734ae8cf69bf736a218bd0f83dbf60bc020ec711cf1ccac9578",
+      "bytes": 16821
+    },
+    "sources/hvta/hvta/FilesystemWrapper/virtual_fs.py": {
+      "sha256": "c42cf472c3dba536e15100e6ff7f34a93d491adb07e08c968b60811a2b80bba8",
+      "bytes": 14423
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/core.py": {
+      "sha256": "e489842d80263ed879c47ce9035e6af3f4de37cd4212bb043633c8f3104057f9",
+      "bytes": 9433
+    },
+    "sources/textarena/textarena/state.py": {
+      "sha256": "8c0f3f819c75ded53559e75b0140744e36ffd17d0c680dbf1a16c43b0e30fc3c",
+      "bytes": 17437
+    },
+    "sources/textarena/textarena/wrappers/ObservationWrappers/llm_observation_wrapper.py": {
+      "sha256": "2b57311783bfb11b294fcdbe0962a226f3f50bf28f510a3a419d3db309be1fa0",
+      "bytes": 10463
+    },
+    "sources/textarena/textarena/wrappers/ActionWrappers/action_formatting_wrapper.py": {
+      "sha256": "22a17d5cac626a1c6a31c51bdc0dcbc294f5a78e999d3f38b6d028d96bd73b73",
+      "bytes": 1484
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/FifteenPuzzle/env_with_bug.py": {
+      "sha256": "a0b63508cb7aa47c74f23158281be44276e6e5618e0db0c95ec383214f9b0a86",
+      "bytes": 12377
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/FifteenPuzzle/env_for_fs.py": {
+      "sha256": "9b1b8c8bccd196fd9094a99917bcd3bc066fe2e74b2599e0ec3078465bafcaa7",
+      "bytes": 7248
+    },
+    "sources/textarena/textarena/envs/FifteenPuzzle/env.py": {
+      "sha256": "7abade511f2b0446d3d09f1d467cd386bd6676ca4441ffc8fb9d9851825d2b8c",
+      "bytes": 7285
+    },
+    "sources/textarena/textarena/envs/FifteenPuzzle/renderer.py": {
+      "sha256": "bacc75f8e78e18247427df33e33f9e91645cf3cf3d5400b911712331d577c790",
+      "bytes": 546
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/TowerOfHanoi/env_with_bug.py": {
+      "sha256": "f77a10d2d73c0788ad626c212907b51a08e21e56550cd4361d1d5bfab2828d97",
+      "bytes": 8141
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/TowerOfHanoi/env_for_fs.py": {
+      "sha256": "e1f4aee914709c15bc9c591d5e3d59a11c81bba4de14194121f1097c88821a8e",
+      "bytes": 5182
+    },
+    "sources/textarena/textarena/envs/TowerOfHanoi/env.py": {
+      "sha256": "dffe304ce1e4285b956d17d98e83f9ffe68f9a9fa2ad33fce1421350d6908070",
+      "bytes": 4886
+    },
+    "sources/textarena/textarena/envs/TowerOfHanoi/renderer.py": {
+      "sha256": "daf8780d2f3933b4de114b9f8a24a74e9c19b62024f50d2453fb3a7c4b18ce70",
+      "bytes": 1290
+    }
+  }
+}

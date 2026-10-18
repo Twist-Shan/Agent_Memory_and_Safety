@@ -1,5 +1,26 @@
 # Implementation validation
 
+## Three-task repository update (2026-10-18)
+
+- Full default suite: **41 passed, 4 skipped** (optional offline white-box tests;
+  their heavy dependencies were not installed in this validation environment).
+- The 26 new agentic checks execute original game/FS tools and independent board
+  replay, including legal 5/6/7-disk routes, a legal FifteenPuzzle route, illegal
+  wins, undo history, multiple moves per action, source integrity and remaining
+  context boundaries. Mocked token tests are software fixtures, not Muse output.
+- A built wheel contained 45 members; all 19 upstream source/license hashes
+  matched, and no retired tasks or private research artifacts were included.
+  The extracted wheel executed and replayed the 127-move seven-disk legal route.
+- Toy A semantics and production modules were unchanged. Its CLI test now uses
+  an inherited-permission workspace directory on managed Windows, where private
+  temporary-directory ACLs prevented reopening test files. These small fixtures
+  stay under ignored `runs/`; ordinary platforms clean up temporary fixtures.
+
+These checks validate the public extraction. They do not establish model success
+rates, and they do not modify frozen research batches already running elsewhere.
+
+## Original Toy A validation record
+
 Validated locally on 2026-10-08. These are software checks and scripted controls,
 not pretrained-model safety experiments.
 

@@ -27,3 +27,4 @@ models/
 *.npz
 *.npy
 *.log
+/_local_archive/

@@ -12,9 +12,16 @@ dependencies = []
 [project.optional-dependencies]
 whitebox = ["torch>=2.2", "transformers>=4.51,<5", "accelerate>=0.30", "numpy>=1.26"]
 analysis = ["numpy>=1.26", "scikit-learn>=1.4"]
+agentic = ["loguru==0.7.3"]
+muse = ["loguru==0.7.3", "torch==2.11.0", "torchvision==0.26.0", "transformers==5.19.0", "accelerate>=0.30", "numpy>=1.26"]
 
 [project.scripts]
 ams = "agent_memory_safety.cli:main"
+ams-agentic = "agent_memory_safety.agentic.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["agent_memory_safety*"]
+exclude = ["agent_memory_safety.agentic._vendor*"]
+
+[tool.setuptools.package-data]
+"agent_memory_safety.agentic" = ["_vendor/**/*"]
