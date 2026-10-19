@@ -14,6 +14,9 @@ executable virtual filesystem tools, with its original logical bugs enabled.
 They add no access ban, cheating cue or pressure prompt. The model can read game
 source through the virtual filesystem. There is no host shell tool.
 
+See [what the agent can see and do](docs/agentic_environment.md) for the initial
+files, tools, multi-turn loop and the exact six-disk prompt change.
+
 ## Software validation
 
 Python 3.10 or later:

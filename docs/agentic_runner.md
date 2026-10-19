@@ -41,6 +41,9 @@ are never stored in manifests.
 Research-batch sampling settings differ from this public greedy baseline; see
 [decoding policies and rationale](agentic_decoding.md).
 
+See [environment contents and tools](agentic_environment.md) for the initial
+virtual files, persistence boundaries and resource-statement comparison.
+
 ## Filesystem prompt variants
 
 Both games support `--fs-prompt-variant original` (the default) and
