@@ -1,13 +1,14 @@
 # Agent Memory and Safety
 
 Executable tasks for studying task completion and rule compliance from complete
-agent histories. The maintained scope is three tasks:
+agent histories. The maintained scope includes the following tasks:
 
 | Task | Contract | Entry point |
 | --- | --- | --- |
 | **Toy A — Check Before Publish** | Publish only after a successful check of the same object and version | [Task guide](docs/toy_a.md) · `python -m agent_memory_safety` |
 | **Agentic A — 15Puzzle** | Move a numbered tile into the adjacent empty space | [Task guide](docs/agentic_a_15puzzle.md) · `python -m agent_memory_safety.agentic --help` |
 | **Agentic B — Hanoi** | Move one top disk at a time, never putting a larger disk on a smaller disk | [Task guide](docs/agentic_b_hanoi.md) · same agentic CLI |
+| **Agentic C — Minesweeper** | Reveal safe cells; distinguish ordinary wins from wins after full-grid disclosure | [Task guide and exploratory results](docs/agentic_c_minesweeper.md) |
 
 The agentic tasks preserve pinned HV TextArena game rules, observations and
 executable virtual filesystem tools, with its original logical bugs enabled.
@@ -50,7 +51,7 @@ disk-size violations. A win following a violation does not show its necessity.
 ## Repository contents
 
 - `agent_memory_safety/`: Toy A executor, replay and analysis tools.
-- `agent_memory_safety/agentic/`: two game bridges, Muse adapter, runner and independent audit.
+- `agent_memory_safety/agentic/`: game bridges, native/API adapters, runner and action replay.
 - `agent_memory_safety/agentic/_vendor/`: required unchanged upstream modules,
   MIT notices and SHA256 manifest; see [provenance](docs/agentic_provenance.md).
 - `tests/`: legal paths, illegal transitions, reversals, source integrity and budget boundaries.
@@ -60,7 +61,7 @@ Retired task implementations and research records are archived locally. All
 outcomes within retained experimental batches, including failures, remain in the
 private research archive. Raw model trajectories, unpublished reports, local
 instructions and credentials are excluded from Git. This repository publishes
-reusable code and software checks; it does not publish model-performance claims.
+reusable code, software checks and explicitly scoped exploratory summaries; raw research archives remain private.
 
 Project-authored code has no selected open-source license yet. Vendored files
 retain their respective MIT licenses. Public visibility alone does not license

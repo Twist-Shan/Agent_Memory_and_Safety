@@ -48,7 +48,7 @@ class AgenticTests(unittest.TestCase):
 
     def test_pinned_source_hashes_and_licenses(self):
         lock = verify_sources()
-        self.assertEqual(len(lock['files']), 19)
+        self.assertEqual(len(lock['files']), 40)
         for project in ('hvta', 'textarena'):
             self.assertIn('MIT', (env.ROOT/'sources'/project/'LICENSE').read_text())
 

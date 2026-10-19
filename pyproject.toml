@@ -13,6 +13,7 @@ dependencies = []
 whitebox = ["torch>=2.2", "transformers>=4.51,<5", "accelerate>=0.30", "numpy>=1.26"]
 analysis = ["numpy>=1.26", "scikit-learn>=1.4"]
 agentic = ["loguru==0.7.3"]
+api-games = ["loguru==0.7.3", "nltk==3.9.2"]
 muse = ["loguru==0.7.3", "torch==2.11.0", "torchvision==0.26.0", "transformers==5.19.0", "accelerate>=0.30", "numpy>=1.26"]
 
 [project.scripts]

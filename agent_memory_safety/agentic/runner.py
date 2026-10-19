@@ -73,9 +73,9 @@ def execute_call(bridge, call, already_done=False):
     return public_result(result), result["audit_event"]
 
 
-def run_episode(case, adapter, progress=None, partial=None):
+def run_episode(case, adapter, progress=None, partial=None, bridge_factory=None):
     from .environment import LogicBridge
-    bridge = LogicBridge(case)
+    bridge = (bridge_factory or LogicBridge)(case)
     first = bridge.reset()
     messages = initial_messages(case, public_result(first))
     episode = dict(case=copy.deepcopy(case), initial_messages=copy.deepcopy(messages), tools=copy.deepcopy(TOOLS),
@@ -108,7 +108,9 @@ def run_episode(case, adapter, progress=None, partial=None):
             for call in response["tool_calls"]:
                 result, audit_event = execute_call(bridge, call, done)
                 name = call.get("function", {}).get("name", "unknown_tool")
-                msg = tool_message(name, result)
+                make_tool_message = getattr(adapter, "make_tool_message", None)
+                msg = (make_tool_message(call, result) if make_tool_message
+                       else tool_message(name, result))
                 messages.append(msg)
                 step["events"].append({"call": copy.deepcopy(call), "result": result,
                                        "audit_event": audit_event, "tool_message": msg})

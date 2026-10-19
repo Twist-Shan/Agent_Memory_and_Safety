@@ -77,6 +77,90 @@
     "sources/textarena/textarena/envs/TowerOfHanoi/renderer.py": {
       "sha256": "daf8780d2f3933b4de114b9f8a24a74e9c19b62024f50d2453fb3a7c4b18ce70",
       "bytes": 1290
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/Minesweeper/env_for_fs.py": {
+      "sha256": "88c352b1a10080c70d6324e9ebdb46beae8e5e9fbc186a0bd2b6039b368b6c76",
+      "bytes": 7062
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/Minesweeper/env_with_bug.py": {
+      "sha256": "4a4aafc186a66b7a26143bbdca1eebf42ae615f26c79e84b2b1327234f8ee3f0",
+      "bytes": 12318
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/Sudoku/env_for_fs.py": {
+      "sha256": "177e3cc49790da25345a2051107a62bd62c5acc863e6f97df0d97f944f719bfe",
+      "bytes": 6501
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/Sudoku/env_with_bug.py": {
+      "sha256": "9ad2a1eec35d8a5977c6e6fedf15189155e29b3ca656699ee80cca731cfb4c4a",
+      "bytes": 12912
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/Wordle/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/Wordle/env_for_fs.py": {
+      "sha256": "40488df6619cdfb77ea504e9ba15d213218a4adedd3cb33c433cc71217dc2593",
+      "bytes": 6767
+    },
+    "sources/hvta/hvta/FilesystemWrapper/logical_bug_envs/Wordle/env_with_bug.py": {
+      "sha256": "1ee9dcc46b4ef085b05fb89768ae2bee89fcb870042a17f66e4a8c8123a5b6a4",
+      "bytes": 9803
+    },
+    "sources/textarena/textarena/envs/Minesweeper/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/Minesweeper/env.py": {
+      "sha256": "cf93ea4066bb628e40382a4aab1d06df009a544b9541f52db8e6ee839fa22a7e",
+      "bytes": 12339
+    },
+    "sources/textarena/textarena/envs/Minesweeper/README.md": {
+      "sha256": "0c3d5fb4e5316b9081281320c93dc518a0e9bb3aee1e220a93e8264554965bb9",
+      "bytes": 6691
+    },
+    "sources/textarena/textarena/envs/Minesweeper/renderer.py": {
+      "sha256": "e699045d0ae590c1d7054b7f1d3566e8bed8941b44e4f651e17cc08167e3fcc5",
+      "bytes": 1056
+    },
+    "sources/textarena/textarena/envs/Sudoku/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/Sudoku/env.py": {
+      "sha256": "6c6b5a6378e35050dc4a41753bac27822d04dc650e8a243b9eb0c8f9b7a4f307",
+      "bytes": 11551
+    },
+    "sources/textarena/textarena/envs/Sudoku/renderer.py": {
+      "sha256": "63b7a662beb7fe79df4c5bfc589c685c7eaaada49309903857d2b0fe3000bc34",
+      "bytes": 1359
+    },
+    "sources/textarena/textarena/envs/utils/data/en.aff": {
+      "sha256": "1e4424559562353d513bc6c7a17c43535af33dbd34ab2817208026ccf8d8fa31",
+      "bytes": 1514
+    },
+    "sources/textarena/textarena/envs/utils/data/en_GB.dic": {
+      "sha256": "869fe17ba4ee4b5401c60a666ee2d6a3dcc237f460b7294435df1cc6a799aa57",
+      "bytes": 552106
+    },
+    "sources/textarena/textarena/envs/utils/data/en_US.dic": {
+      "sha256": "5fe24e81ac026206a67983f543b641665f5997a1c42d0723e4a2d6c3a8e3144e",
+      "bytes": 696275
+    },
+    "sources/textarena/textarena/envs/utils/word_lists.py": {
+      "sha256": "4a921a9e54086ccfa069706e4e7263fd615f3a8d051f83a22cd40335a9af9af3",
+      "bytes": 8245
+    },
+    "sources/textarena/textarena/envs/Wordle/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/Wordle/env.py": {
+      "sha256": "84716d2e75f31cefe949118a54b551446254b793376238abc872a40a9cfde548",
+      "bytes": 9058
+    },
+    "sources/textarena/textarena/envs/Wordle/renderer.py": {
+      "sha256": "80cda9b0b54ed45d5e016120453194fdf9506b4f223b8a8592fcfd8e564443b2",
+      "bytes": 1145
     }
   }
 }
