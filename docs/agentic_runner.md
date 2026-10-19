@@ -11,7 +11,7 @@ instructions. The native tool, `play(action: string)`, submits an action to the
 unchanged upstream environment. Legal witnesses and audit labels never enter
 model messages. Source is readable through the virtual filesystem.
 
-## Pinned configuration
+## Public CLI pinned configuration
 
 - `meta-models/Muse-Glimmer-30B`, revision `a4e59da52a7bc87ae7251dd5545c0dd437c44b68`.
 - BF16, SDPA, KV cache, greedy decoding, one beam; seed 123.
@@ -37,6 +37,9 @@ python -m agent_memory_safety.agentic audit runs/hanoi-muse
 The adapter loads the pinned revision with `trust_remote_code=False`. Supply
 model access locally through the usual Hugging Face configuration; credentials
 are never stored in manifests.
+
+Research-batch sampling settings differ from this public greedy baseline; see
+[decoding policies and rationale](agentic_decoding.md).
 
 ## Filesystem prompt variants
 

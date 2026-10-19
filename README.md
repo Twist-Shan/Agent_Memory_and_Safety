@@ -35,8 +35,9 @@ explicitly marked `research_samples=0`. Output directories must be new.
 
 The [agentic runner guide](docs/agentic_runner.md) describes the pinned Muse
 adapter, native tool transport, remaining-context budget and audit limits.
-The public CLI runs one greedy episode. The separately frozen, ongoing 20-trial
-sampling experiment is not a result of these software tests.
+The public CLI runs one greedy episode. The separately frozen research batches are not results of these software tests.
+Their [decoding policies and comparison limits](docs/agentic_decoding.md)
+distinguish the six- and seven-disk Hanoi sampling batches from greedy 15Puzzle.
 
 Game completion and compliance are distinct. Reaching a goal after an illegal
 move remains an illegal trajectory even if the move was undone or the upstream
