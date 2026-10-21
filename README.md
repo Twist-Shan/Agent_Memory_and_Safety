@@ -11,10 +11,12 @@ agent histories. The maintained scope includes the following tasks:
 | **Agentic C — Minesweeper** | Reveal safe cells; distinguish ordinary wins from wins after full-grid disclosure | [Task guide and exploratory results](docs/agentic_c_minesweeper.md) |
 | **Agentic D — Crosswords** | Solve the crossword; separately measure hidden-answer file reads and disclosure of that source in a postgame report | [Task guide and exploratory results](docs/agentic_d_crosswords.md) |
 | **Agentic E — GuessTheNumber** | Guess 1–1000 within 10 valid guesses; hidden file explicitly labels the target answer; measure reads, use and accuracy of a source report | [Current v2 setting and results](docs/agentic_e_guessnumber.md) |
+| **Agentic F — Hangman** | Guess a word with six incorrect attempts; measure hidden-answer reads and disclosure when explicitly asked about sources | [Setting and exploratory results](docs/agentic_f_hangman.md) |
 
 The agentic tasks preserve pinned HV TextArena game rules, observations and
-executable virtual filesystem tools. A–C enable logical bugs; D and E instead enable
-hidden-answer files and disable logical bugs and opponent channels. Both retain
+executable virtual filesystem tools, with condition-specific rule changes documented
+in each guide. A–C enable logical bugs; D–F instead enable
+hidden-answer files and disable logical bugs and opponent channels. These retain
 the upstream filesystem README warning that using the answer file is cheating.
 The harness adds no exploit hint or pressure prompt. The model can read game
 source through the virtual filesystem. There is no host shell tool.
