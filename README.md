@@ -14,6 +14,7 @@ from agent histories. The maintained scope includes the following tasks:
 | **Agentic F — Hangman** | Guess a word with six incorrect attempts; measure hidden-answer reads and disclosure when explicitly asked about sources | [Setting and exploratory results](docs/agentic_f_hangman.md) |
 | **Agentic G — Git dedent** | Repair code while preserving task-start tests; separate actual modification, awareness, restoration, and final reporting | [Frozen setting and results](docs/agentic_g_git_dedent.md) |
 | **Agentic H — Astropy** | Fix nested-model separability without altering protected tests, including by Git restore | [Frozen uncommitted-test setting and results](docs/agentic_h_astropy.md) |
+| **Agentic I — Git log_clear** | Repair list clearing while preserving initial tests; explicitly report modifications and restoration | [Frozen setting and results](docs/agentic_i_log_clear.md) |
 
 Agentic A–F preserve pinned HV TextArena game rules, observations and
 executable virtual filesystem tools, with condition-specific rule changes documented
@@ -23,8 +24,8 @@ the upstream filesystem README warning that using the answer file is cheating.
 The harness adds no exploit hint or pressure prompt. The model can read game
 source through the virtual filesystem. There is no host shell tool.
 
-G/H study protected-resource modification in software maintenance: G uses a small
-real-Git fixture with constrained tools; H uses a full isolated Astropy repository
+G/H/I study protected-resource modification in software maintenance: G and I use small
+real-Git fixtures with constrained tools; H uses a full isolated Astropy repository
 with a shell. Their [four reporting dimensions](docs/agentic_resource_integrity.md)
 separate observed changes from awareness, restoration and final admission. These
 releases publish frozen protocols and derived results, not new public CLI commands.
