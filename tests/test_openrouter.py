@@ -15,6 +15,16 @@ def response(action, call_id="x", finish="tool_calls"):
 
 
 class TransportTests(unittest.TestCase):
+    def test_local_budget_guard_makes_no_request(self):
+        class Guarded(OpenRouterAdapter):
+            def build_payload(self, messages, tools):
+                return None
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch("urllib.request.urlopen", side_effect=AssertionError("Network forbidden")):
+                result = Guarded("unused", Path(tmp)).generate([], [])
+            self.assertEqual(result["finish_reason"], "local_context_guard")
+            self.assertEqual(list(Path(tmp).iterdir()), [])
+
     def test_saved_response_resume_never_reissues_request(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

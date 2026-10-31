@@ -161,6 +161,90 @@
     "sources/textarena/textarena/envs/Wordle/renderer.py": {
       "sha256": "80cda9b0b54ed45d5e016120453194fdf9506b4f223b8a8592fcfd8e564443b2",
       "bytes": 1145
+    },
+    "sources/textarena/textarena/envs/Mastermind/env.py": {
+      "sha256": "5cb9b37d250ad61a248878c874d8ae657cec6327ceb978f23012b78d372b572c",
+      "bytes": 7024
+    },
+    "sources/textarena/textarena/envs/Mastermind/renderer.py": {
+      "sha256": "7008231c0b440f881e3c1a047e68077a2d4aecf2f2cc91e33894c3c07bcfa535",
+      "bytes": 1022
+    },
+    "sources/textarena/textarena/envs/Mastermind/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/LogicPuzzle/env.py": {
+      "sha256": "86e46f6d4d8ec6808783c76d72570c476ba76432a3e2e720a6e5b911c0e9f940",
+      "bytes": 13963
+    },
+    "sources/textarena/textarena/envs/LogicPuzzle/game_board_clues.jsonl": {
+      "sha256": "3c14eff14f7317cf2811958f53b4850c91e5be8fe3714406e81521a8384faea9",
+      "bytes": 15825
+    },
+    "sources/textarena/textarena/envs/LogicPuzzle/renderer.py": {
+      "sha256": "8b72a2dfb43a0459ce34e171062d59cbbe684637e38a75c18258ba1b9c3cc166",
+      "bytes": 1678
+    },
+    "sources/textarena/textarena/envs/LogicPuzzle/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/Hangman/env.py": {
+      "sha256": "93260b29f84e524bab434c1ef1a828d95b70b89b1bd2f6298c66a2810955dce4",
+      "bytes": 6420
+    },
+    "sources/textarena/textarena/envs/Hangman/renderer.py": {
+      "sha256": "16da0edb2bc5192ea67a35bbbb7273f9c893af8d2e8d92a29b6ac7c66e434882",
+      "bytes": 2168
+    },
+    "sources/textarena/textarena/envs/Hangman/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/GuessTheNumber/env.py": {
+      "sha256": "2ad3934bd2ebdcd09a4629eac8a35157165e8d1c47b8d101c3aeb51bd690a8f0",
+      "bytes": 4285
+    },
+    "sources/textarena/textarena/envs/GuessTheNumber/renderer.py": {
+      "sha256": "bcf0f1244c8dc9e7fcb27f43945bbb8baf758ffa9a4906749e44f3234ddba796",
+      "bytes": 891
+    },
+    "sources/textarena/textarena/envs/GuessTheNumber/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/Crosswords/env.py": {
+      "sha256": "fcf61050ec31f771b3227e5bd2f75f55f9db23f4990ff55866b53a57eb2ec9f3",
+      "bytes": 15012
+    },
+    "sources/textarena/textarena/envs/Crosswords/renderer.py": {
+      "sha256": "d77d00bbf5b7199e67a9cc415ddde4bfb2a2b75aa9da3aff8e16d43f791810d2",
+      "bytes": 1707
+    },
+    "sources/textarena/textarena/envs/Crosswords/words_clues.jsonl": {
+      "sha256": "4476aee513b188c9fc1d874c1dd361e4b8e4384006412b74c7b53d813aadcf29",
+      "bytes": 85528
+    },
+    "sources/textarena/textarena/envs/Crosswords/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "sources/textarena/textarena/envs/Crosswords/utils/words_clues_generator.py": {
+      "sha256": "a16f155c8d92e375cbcb6aa4496b25937a4f290c65ace9ceaedf40a8648ae8d2",
+      "bytes": 2822
+    },
+    "sources/textarena/textarena/envs/WordSearch/env.py": {
+      "sha256": "c7b4a2434eaa8e6469e1baae16f00d702fbae8aa9f165dd4d51740e57efd7d33",
+      "bytes": 26454
+    },
+    "sources/textarena/textarena/envs/WordSearch/renderer.py": {
+      "sha256": "46aa86a47431c98c04957730759285b2dee9a9b66327e6130a0da22f91541e57",
+      "bytes": 994
+    },
+    "sources/textarena/textarena/envs/WordSearch/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
     }
   }
 }

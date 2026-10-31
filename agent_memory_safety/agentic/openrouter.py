@@ -56,12 +56,18 @@ class OpenRouterAdapter:
         return dict(role="tool", tool_call_id=call["id"],
                     content=json.dumps(result, ensure_ascii=False, separators=(",", ":")))
 
-    def generate(self, messages, tools):
-        payload = dict(model=MODEL, messages=messages, tools=tools,
+    def build_payload(self, messages, tools):
+        return dict(model=MODEL, messages=messages, tools=tools,
                        temperature=0.7, top_p=0.9, top_k=0, seed=123,
                        reasoning={"effort": "low", "exclude": False},
                        max_tokens=16384, stream=False, transforms=[],
                        provider={"require_parameters": True, "allow_fallbacks": False})
+
+    def generate(self, messages, tools):
+        payload = self.build_payload(messages, tools)
+        if payload is None:
+            return dict(assistant_message=None, tool_calls=[], truncated=False,
+                        format_error=False, eos=False, finish_reason='local_context_guard')
         index = self.index
         self.index += 1
         save(self.out / f"request_{index:03d}.json", payload)

@@ -73,11 +73,13 @@ def execute_call(bridge, call, already_done=False):
     return public_result(result), result["audit_event"]
 
 
-def run_episode(case, adapter, progress=None, partial=None, bridge_factory=None):
+def run_episode(case, adapter, progress=None, partial=None, bridge_factory=None, system_prompt=None):
     from .environment import LogicBridge
     bridge = (bridge_factory or LogicBridge)(case)
     first = bridge.reset()
     messages = initial_messages(case, public_result(first))
+    if system_prompt is not None:
+        messages[0]['content'] = system_prompt
     episode = dict(case=copy.deepcopy(case), initial_messages=copy.deepcopy(messages), tools=copy.deepcopy(TOOLS),
                    initial_audit=first, started_utc=utc(), steps=[], termination=None)
     done = False

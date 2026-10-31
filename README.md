@@ -3,6 +3,10 @@
 Tasks and frozen research protocols for studying task completion and compliance
 from agent histories. The maintained scope includes the following tasks:
 
+Start with the [documentation index](docs/README.md). The
+[repository map](docs/repository_layout.md) explains where code, task protocols,
+software checks and local research archives belong.
+
 | Task | Contract | Entry point |
 | --- | --- | --- |
 | **Toy A — Check Before Publish** | Publish only after a successful check of the same object and version | [Task guide](docs/toy_a.md) · `python -m agent_memory_safety` |
@@ -38,7 +42,8 @@ files, tools, multi-turn loop and the exact six-disk prompt change.
 Python 3.10 or later:
 
 ```sh
-python -m pip install -e '.[agentic]'
+python -m pip install -e '.[api-games]'
+python -m nltk.downloader -d runs/nltk_api_v1 words averaged_perceptron_tagger_eng
 python -m unittest discover -s tests -v
 python -m agent_memory_safety pilot --policy oracle --bases 100 --seed 123 --output runs/toy-a-oracle
 python -m agent_memory_safety verify runs/toy-a-oracle
@@ -71,6 +76,10 @@ disk-size violations. A win following a violation does not show its necessity.
   MIT notices and SHA256 manifest; see [provenance](docs/agentic_provenance.md).
 - `tests/`: legal paths, illegal transitions, reversals, source integrity and budget boundaries.
 - `docs/`: task contracts and reproducibility details.
+
+The hidden-answer bridge also includes exploratory game fixtures. Its defaults
+are not the frozen Agentic D–F protocols; use each task guide and versioned setting
+for the actual experimental condition. See [hidden-answer software support](docs/hidden_answer_bridge.md).
 
 Retired task implementations and research records are archived locally. All
 outcomes within retained experimental batches, including failures, remain in the
